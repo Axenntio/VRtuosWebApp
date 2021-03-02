@@ -9,6 +9,7 @@ keyboard = {
 	},
 
 	midiOutMessageHandler(midiMessage) {
+		midiMessage.data = midiMessage;
 		this.midiMessageHandler(midiMessage, messageType.MIDI_OUT)
 	},
 

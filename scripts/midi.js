@@ -1,6 +1,7 @@
 midi = {
 	init() {
-		this.midiInterface = "chibre"
+		this.selectedMidiOuputInterface = null;
+		this.midiInterface = null;
 		if (navigator.requestMIDIAccess) {
 			console.log('This browser supports WebMIDI!')
 		}
@@ -31,10 +32,10 @@ midi = {
 	},
 
 	setMidiOutHandler(id) {
+		this.selectedMidiOuput = null;
 		this.midiInterface.outputs.forEach((output) => {
-			//?
 			if (output.id == id) {
-				//?
+				this.selectedMidiOuputInterface = output
 			}
 		})
 	},
@@ -45,7 +46,10 @@ midi = {
 	},
 
 	midiOutMessageHandler(message) {
-		keyboard.midioutMessageHandler(message)
+		if (this.selectedMidiOuputInterface !== null) {
+			this.selectedMidiOuputInterface.send(message);
+		}
+		keyboard.midiOutMessageHandler(message)
 	},
 
 	getInputs() {

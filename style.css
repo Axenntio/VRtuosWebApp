@@ -42,6 +42,22 @@
 	background: rgb(0, 0, 255);
 }
 
+.key.midi-out.sharp {
+	background: rgb(192, 0, 0);
+}
+
+.key.midi-out:not(.sharp) {
+	background: rgb(255, 0, 0);
+}
+
+.key.midi-in.midi-out.sharp {
+	background: rgb(192, 0, 192);
+}
+
+.key.midi-in.midi-out:not(.sharp) {
+	background: rgb(255, 0, 255);
+}
+
 .not-connected {
 	color: #c90000;
 }
