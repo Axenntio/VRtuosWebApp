@@ -21,25 +21,37 @@
 	float: left;
 	width: 1.9%;
 	height: 100%;
-	background: rgba(255, 255, 255);
+	background: white;
 }
 
 .key.sharp {
 	position: absolute;
 	width: 1.2%;
 	height: 65%;
-	background: #000;
-	color: #eee;
+	background: black;
+	color: white;
 	top: 0;
 	z-index: 3;
 }
 
 .key.midi-in.sharp {
-	background: rgba(0, 0, 192);
+	background: rgb(0, 0, 192);
 }
 
 .key.midi-in:not(.sharp) {
-	background: rgba(0, 0, 255);
+	background: rgb(0, 0, 255);
+}
+
+.not-connected {
+	color: #c90000;
+}
+
+.connected {
+	color: #00722c;
+}
+
+.connecting {
+	color: #d68100;
 }
 
 .key[id="key-1"] { left: 1.3%; }

@@ -1,7 +1,7 @@
 const serverStates = {
-	NOT_CONNECTED: "Not connected",
-	CONNECTED: "Connected!",
-	CONNECTING: "Connecting..."
+	NOT_CONNECTED: ["not-connected", "Not connected"],
+	CONNECTED: ["connected", "Connected!"],
+	CONNECTING: ["connecting", "Connecting..."]
 }
 
 client = {
@@ -15,23 +15,23 @@ client = {
 	},
 
 	connect() {
-		this.state = serverStates.CONNECTING;
-		this.connectionStateText.innerHTML = this.state;
+		this.setConnectionState(serverStates.CONNECTING);
 		this.websocket = new WebSocket(this.url)
 		this.websocket.onopen = function (e) {
-			console.log("Connected");
+			client.setConnectionState(serverStates.CONNECTED);
 		};
 	
 		this.websocket.onclose = function (e) {
-			console.log("Disconnected");
+			client.setConnectionState(serverStates.NOT_CONNECTED);
 		};
 	
 		this.websocket.onmessage = function (e) {
 			console.log("Get:", e.data);
+			//client.midiMessageHandler(e.data);
 		};
 	
 		this.websocket.onerror = function (e) {
-			console.log("Error: ", e.data);
+			console.error("Error: ", e.data);
 		};
 	},
 
@@ -39,7 +39,23 @@ client = {
 		this.websocket.send(message);
 	},
 
+	setConnectionState(state) {
+		this.state = state;
+		this.connectionStateText.className = this.state[0];
+		this.connectionStateText.innerHTML = this.state[1];
+	},
+
 	setIp(ipAddress) {
 		this.url = "ws://" + ipAddress;
+	},
+
+	midiMessageHandler(message) {
+		midi.midiOutMessageHandler(message);
+	},
+
+	sendMidiMessage(message) {
+		if (this.websocket !== null && this.websocket.readyState === WebSocket.OPEN) {
+			this.websocket.send(message.data)
+		}
 	}
 }
