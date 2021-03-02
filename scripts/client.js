@@ -17,6 +17,7 @@ client = {
 	connect() {
 		this.setConnectionState(serverStates.CONNECTING);
 		this.websocket = new WebSocket(this.url)
+		this.websocket.binaryType = "arraybuffer";
 		this.websocket.onopen = function (e) {
 			client.setConnectionState(serverStates.CONNECTED);
 		};
@@ -26,8 +27,7 @@ client = {
 		};
 	
 		this.websocket.onmessage = function (e) {
-			console.log("Get:", e.data);
-			//client.midiMessageHandler(e.data);
+			client.midiMessageHandler(new Uint8Array(e.data));
 		};
 	
 		this.websocket.onerror = function (e) {
