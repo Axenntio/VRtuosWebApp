@@ -46,7 +46,7 @@ client = {
 	},
 
 	setIp(ipAddress) {
-		this.url = "ws://" + ipAddress;
+		this.url = "ws://" + ipAddress + ":42096";
 	},
 
 	midiMessageHandler(message) {
