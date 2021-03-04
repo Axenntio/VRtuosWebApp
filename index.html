@@ -5,29 +5,32 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VRtuos Companion WebApp</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/main.css">
 	<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
-	<h1>VRtuos Companion</h1>
-	<table>
-		<tr>
-			<td><span>IP address:</span></td>
-			<td><input id="ipAddress" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"></td>
-		</tr>
-		<tr>
-			<td><button id="connectButton" onclick="client.connect()">Connect</button></td>
-			<td><span id="connectionState" class="not-connected">Not connected</span></td>
-		</tr>
-		<tr>
-			<td><label for="midiInInterface">MIDI IN:</label></td>
-			<td><select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()"></select></td>
-		</tr>
-		<tr>
-			<td><label for="midiOutInterface">MIDI OUT:</label></td>
-			<td><select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()"></select></td>
-		</tr>
-	</table>
+	<div class="menu">
+		<h1 style="font-family:Georgia">VRtuos Companion</h1>
+		<table>
+			<tr>
+				<td><span>IP address:</span></td>
+				<td><input id="ipAddress" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"></td>
+			</tr>
+			<tr>
+				<td><button id="connectButton" onclick="client.connect()">Connect</button></td>
+				<td><span id="connectionState" class="not-connected">Not connected</span></td>
+			</tr>
+			<tr>
+				<td><label for="midiInInterface">MIDI IN:</label></td>
+				<td><select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()"></select></td>
+			</tr>
+			<tr>
+				<td><label for="midiOutInterface">MIDI OUT:</label></td>
+				<td><select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()"></select></td>
+			</tr>
+		</table>
+	</div>
 
 	<div class="keys">
 		<div id="key-0" class="key" data-note="A"></div>
@@ -119,12 +122,13 @@
 		<div id="key-86" class="key" data-note="B"></div>
 		<div id="key-87" class="key" data-note="C"></div>
 	</div>
+	
+	<div id="bg"></div>
 </body>
 <script src="scripts/config.js"></script> 
 <script src="scripts/client.js"></script> 
 <script src="scripts/midi.js"></script> 
 <script src="scripts/keyboard.js"></script> 
-<!-- <script src="script.js"></script>  -->
 <script>
 	config.init();
 	client.init();
