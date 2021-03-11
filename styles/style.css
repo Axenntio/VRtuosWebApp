@@ -8,11 +8,12 @@
 }
 
 .menu {
+	text-align: center;
 	display: block;
-	width: 40%;
+	width: 60%;
 	height: 30%;
 	position: relative;
-	margin-left: 30%;
+	margin-left: 20%;
     margin-top: 2%;
 }
 
