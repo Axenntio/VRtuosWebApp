@@ -32,6 +32,7 @@ midi = {
 	},
 
 	setMidiOutHandler(id) {
+		console.log("haaaaa");
 		this.selectedMidiOuput = null;
 		this.midiInterface.outputs.forEach((output) => {
 			if (output.id == id) {
@@ -46,6 +47,7 @@ midi = {
 	},
 
 	midiOutMessageHandler(message) {
+		console.log(this.selectedMidiOuputInterface)
 		if (this.selectedMidiOuputInterface !== null) {
 			this.selectedMidiOuputInterface.send(message);
 		}
