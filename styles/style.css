@@ -1,15 +1,25 @@
 .keys {
 	display: block;
-	width: 90%;
-	height: 100px;
-	max-width: 100%;
+	width: 99%;
+	height: 23%;
+	position: absolute;
+	margin-left: 1%;
+    bottom: 2%;
+}
+
+.menu {
+	text-align: center;
+	display: block;
+	width: 60%;
+	height: 30%;
 	position: relative;
-	margin: 40px auto 0;
+	margin-left: 20%;
+    margin-top: 2%;
 }
 
 .key {
 	position: relative;
-	border: 1px solid black;
+	border: 1px solid white;
 	border-radius: 0 0 0.5rem 0.5rem;
 	transition: all .07s ease;
 	display: block;
@@ -21,41 +31,44 @@
 	float: left;
 	width: 1.9%;
 	height: 100%;
-	background: white;
+	background: black;
+	opacity: 0.5;
 }
 
 .key.sharp {
 	position: absolute;
 	width: 1.2%;
 	height: 65%;
-	background: black;
-	color: white;
+	background: white;
+	color: black;
 	top: 0;
 	z-index: 3;
 }
 
 .key.midi-in.sharp {
-	background: rgb(0, 0, 192);
+	background: rgb(0, 0, 255);
+	height: 68%;
 }
 
 .key.midi-in:not(.sharp) {
-	background: rgb(0, 0, 255);
+	background: rgb(0, 0, 192);
+	height: 105%;
 }
 
 .key.midi-out.sharp {
-	background: rgb(192, 0, 0);
-}
-
-.key.midi-out:not(.sharp) {
 	background: rgb(255, 0, 0);
 }
 
+.key.midi-out:not(.sharp) {
+	background: rgb(192, 0, 0);
+}
+
 .key.midi-in.midi-out.sharp {
-	background: rgb(192, 0, 192);
+	background: rgb(255, 0, 255);
 }
 
 .key.midi-in.midi-out:not(.sharp) {
-	background: rgb(255, 0, 255);
+	background: rgb(192, 0, 192);
 }
 
 .not-connected {

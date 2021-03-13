@@ -1,31 +1,31 @@
 config = {
 	init() {
-		this.midiInInterfaceSelector = document.getElementById("midiInInterface");
-		this.midiOutInterfaceSelector = document.getElementById("midiOutInterface");
-		this.ipAddressTextBox = document.getElementById("ipAddress");
-		this.previousMidiIn = localStorage.getItem('midiIn');
-		this.previousMidiOut = localStorage.getItem('midiOut');
-		this.previousIpAddress = localStorage.getItem('ipAddress');
-		this.ipAddressTextBox.addEventListener('input', this.ipAddressHandler);
+		this.midiInInterfaceSelector = document.getElementById("midiInInterface")
+		this.midiOutInterfaceSelector = document.getElementById("midiOutInterface")
+		this.ipAddressTextBox = document.getElementById("ipAddress")
+		this.previousMidiIn = localStorage.getItem('midiIn')
+		this.previousMidiOut = localStorage.getItem('midiOut')
+		this.previousIpAddress = localStorage.getItem('ipAddress')
+		this.ipAddressTextBox.addEventListener('input', this.ipAddressHandler)
 	},
 
 	getPreviousMidiIn() {
-		return this.previousMidiIn;
+		return this.previousMidiIn
 	},
 
 	getPreviousMidiOut() {
-		return this.previousMidiOut;
+		return this.previousMidiOut
 	},
 
 	getPreviousIpAddress() {
-		return this.previousIpAddress;
+		return this.previousIpAddress
 	},
 
 	updateForm() {
 		midi.getInputs().forEach((input) => {
 			this.midiInInterfaceSelector.add(
 				this.createMidiOptionElement(input.id, input.name, input.state)
-			);
+			)
 			if (input.id == this.previousMidiIn) {
 				this.midiInInterfaceSelector.value = this.previousMidiIn
 			}
@@ -34,17 +34,18 @@ config = {
 		midi.getOutputs().forEach((output) => {
 			this.midiOutInterfaceSelector.add(
 				this.createMidiOptionElement(output.id, output.name, output.state)
-			);
+			)
 			if (output.id == this.previousMidiOut) {
 				this.midiOutInterfaceSelector.value = this.previousMidiOut
 			}
 		})
 
-		this.midiInInterfaceChanged();
+		this.midiInInterfaceChanged()
+		this.midiOutInterfaceChanged()
 
 		if (this.previousIpAddress !== null) {
 			this.ipAddressTextBox.value = this.previousIpAddress
-			client.setIp(this.previousIpAddress);
+			client.setIp(this.previousIpAddress)
 		}
 	},
 
@@ -56,17 +57,17 @@ config = {
 	},
 
 	midiInInterfaceChanged() {
-		midi.setMidiInHandler(this.midiInInterfaceSelector.value);
-		localStorage.setItem('midiIn', this.midiInInterfaceSelector.value);
+		midi.setMidiInHandler(this.midiInInterfaceSelector.value)
+		localStorage.setItem('midiIn', this.midiInInterfaceSelector.value)
 	},
 	
 	midiOutInterfaceChanged() {
-		midi.setMidiOutHandler(this.midiOutInterfaceSelector.value);		
-		localStorage.setItem('midiOut', this.midiOutInterfaceSelector.value);
+		midi.setMidiOutHandler(this.midiOutInterfaceSelector.value)		
+		localStorage.setItem('midiOut', this.midiOutInterfaceSelector.value)
 	},
 
 	ipAddressHandler(item) {
-		client.setIp(item.target.value);	
-		localStorage.setItem('ipAddress', item.target.value);	
+		client.setIp(item.target.value)	
+		localStorage.setItem('ipAddress', item.target.value)	
 	}
 }
