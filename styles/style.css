@@ -72,15 +72,15 @@
 }
 
 .not-connected {
-	color: #c90000;
+	color: #f00000;
 }
 
 .connected {
-	color: #00722c;
+	color: #00b444;
 }
 
 .connecting {
-	color: #d68100;
+	color: #f59506;
 }
 
 .key[id="key-1"] { left: 1.3%; }
