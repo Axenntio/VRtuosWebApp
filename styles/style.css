@@ -23,12 +23,13 @@ body {
 	width: 100%;
 	top: 0;
 	bottom: 0;
-	z-index: 10;
+	z-index: -1;
 	text-align: center;
 	opacity: 0;
 }
 
 .error-midi-api.active {
+	z-index: 10;
 	opacity: 1;
 }
 

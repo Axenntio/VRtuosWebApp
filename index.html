@@ -45,11 +45,19 @@
 				</tr>
 				<tr>
 					<td><label for="midiInInterface">MIDI in:</label></td>
-					<td><select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()"></select></td>
+					<td>
+						<select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()">
+							<option value="none">None</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><label for="midiOutInterface">MIDI out:</label></td>
-					<td><select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()"></select></td>
+					<td>
+						<select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()">
+							<option value="none">None</option>
+						</select>
+					</td>
 				</tr>
 			</table>
 		</div>
