@@ -1,144 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>VRtuos Companion WebApp</title>
-	<link rel="stylesheet" href="styles/style.css">
-	<link rel="stylesheet" href="styles/main.css">
-	<link rel="shortcut icon" href="favicon.ico">
-</head>
-<body>
-	<div class="menu">
-		<p style="font-family:Georgia;font-size:5vw">VRtuos Companion<span style="position:relative;top:-2vw;font-size:3vw">(beta)</span></p>
-		<table>
-			<tr>
-				<td><span>IP address:</span></td>
-				<td><input id="ipAddress" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"></td>
-			</tr>
-			<tr>
-				<td><button id="connectButton" onclick="client.connect()">Connect</button></td>
-				<td><span id="connectionState" class="not-connected">Not connected</span></td>
-			</tr>
-			<tr>
-				<td><label for="midiInInterface">MIDI IN:</label></td>
-				<td><select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()"></select></td>
-			</tr>
-			<tr>
-				<td><label for="midiOutInterface">MIDI OUT:</label></td>
-				<td><select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()"></select></td>
-			</tr>
-		</table>
-	</div>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>VRtuos Companion WebApp</title>
+		<link rel="stylesheet" href="styles/style.css">
+		<link rel="shortcut icon" href="favicon.ico">
+	</head>
+	<body>
+		<div id="errorMidiApi" class="error-midi-api">
+			<div class="title">
+				<p>VRtuos Companion<span class="superscript">(beta)</span></p>
+			</div>
 
-	<div class="keys">
-		<div id="key-0" class="key" data-note="A"></div>
-		<div id="key-1" class="key sharp" data-note="A#"></div>
-		<div id="key-2" class="key" data-note="B"></div>
-		<div id="key-3" class="key" data-note="C"></div>
-		<div id="key-4" class="key sharp" data-note="C#"></div>
-		<div id="key-5" class="key" data-note="D"></div>
-		<div id="key-6" class="key sharp" data-note="D#"></div>
-		<div id="key-7" class="key" data-note="E"></div>
-		<div id="key-8" class="key" data-note="F"></div>
-		<div id="key-9" class="key sharp" data-note="F#"></div>
-		<div id="key-10" class="key" data-note="G"></div>
-		<div id="key-11" class="key sharp" data-note="G#"></div>
-		<div id="key-12" class="key" data-note="A"></div>
-		<div id="key-13" class="key sharp" data-note="A#"></div>
-		<div id="key-14" class="key" data-note="B"></div>
-		<div id="key-15" class="key" data-note="C"></div>
-		<div id="key-16" class="key sharp" data-note="C#"></div>
-		<div id="key-17" class="key" data-note="D"></div>
-		<div id="key-18" class="key sharp" data-note="D#"></div>
-		<div id="key-19" class="key" data-note="E"></div>
-		<div id="key-20" class="key" data-note="F"></div>
-		<div id="key-21" class="key sharp" data-note="F#"></div>
-		<div id="key-22" class="key" data-note="G"></div>
-		<div id="key-23" class="key sharp" data-note="G#"></div>
-		<div id="key-24" class="key" data-note="A"></div>
-		<div id="key-25" class="key sharp" data-note="A#"></div>
-		<div id="key-26" class="key" data-note="B"></div>
-		<div id="key-27" class="key" data-note="C"></div>
-		<div id="key-28" class="key sharp" data-note="C#"></div>
-		<div id="key-29" class="key" data-note="D"></div>
-		<div id="key-30" class="key sharp" data-note="D#"></div>
-		<div id="key-31" class="key" data-note="E"></div>
-		<div id="key-32" class="key" data-note="F"></div>
-		<div id="key-33" class="key sharp" data-note="F#"></div>
-		<div id="key-34" class="key" data-note="G"></div>
-		<div id="key-35" class="key sharp" data-note="G#"></div>
-		<div id="key-36" class="key" data-note="A"></div>
-		<div id="key-37" class="key sharp" data-note="A#"></div>
-		<div id="key-38" class="key" data-note="B"></div>
-		<div id="key-39" class="key" data-note="C"></div>
-		<div id="key-40" class="key sharp" data-note="C#"></div>
-		<div id="key-41" class="key" data-note="D"></div>
-		<div id="key-42" class="key sharp" data-note="D#"></div>
-		<div id="key-43" class="key" data-note="E"></div>
-		<div id="key-44" class="key" data-note="F"></div>
-		<div id="key-45" class="key sharp" data-note="F#"></div>
-		<div id="key-46" class="key" data-note="G"></div>
-		<div id="key-47" class="key sharp" data-note="G#"></div>
-		<div id="key-48" class="key" data-note="A"></div>
-		<div id="key-49" class="key sharp" data-note="A#"></div>
-		<div id="key-50" class="key" data-note="B"></div>
-		<div id="key-51" class="key" data-note="C"></div>
-		<div id="key-52" class="key sharp" data-note="C#"></div>
-		<div id="key-53" class="key" data-note="D"></div>
-		<div id="key-54" class="key sharp" data-note="D#"></div>
-		<div id="key-55" class="key" data-note="E"></div>
-		<div id="key-56" class="key" data-note="F"></div>
-		<div id="key-57" class="key sharp" data-note="F#"></div>
-		<div id="key-58" class="key" data-note="G"></div>
-		<div id="key-59" class="key sharp" data-note="G#"></div>
-		<div id="key-60" class="key" data-note="A"></div>
-		<div id="key-61" class="key sharp" data-note="A#"></div>
-		<div id="key-62" class="key" data-note="B"></div>
-		<div id="key-63" class="key" data-note="C"></div>
-		<div id="key-64" class="key sharp" data-note="C#"></div>
-		<div id="key-65" class="key" data-note="D"></div>
-		<div id="key-66" class="key sharp" data-note="D#"></div>
-		<div id="key-67" class="key" data-note="E"></div>
-		<div id="key-68" class="key" data-note="F"></div>
-		<div id="key-69" class="key sharp" data-note="F#"></div>
-		<div id="key-70" class="key" data-note="G"></div>
-		<div id="key-71" class="key sharp" data-note="G#"></div>
-		<div id="key-72" class="key" data-note="A"></div>
-		<div id="key-73" class="key sharp" data-note="A#"></div>
-		<div id="key-74" class="key" data-note="B"></div>
-		<div id="key-75" class="key" data-note="C"></div>
-		<div id="key-76" class="key sharp" data-note="C#"></div>
-		<div id="key-77" class="key" data-note="D"></div>
-		<div id="key-78" class="key sharp" data-note="D#"></div>
-		<div id="key-79" class="key" data-note="E"></div>
-		<div id="key-80" class="key" data-note="F"></div>
-		<div id="key-81" class="key sharp" data-note="F#"></div>
-		<div id="key-82" class="key" data-note="G"></div>
-		<div id="key-83" class="key sharp" data-note="G#"></div>
-		<div id="key-84" class="key" data-note="A"></div>
-		<div id="key-85" class="key sharp" data-note="A#"></div>
-		<div id="key-86" class="key" data-note="B"></div>
-		<div id="key-87" class="key" data-note="C"></div>
-	</div>
-	<footer id="footer">
-		<ul class="icons">
-			<li><a href="https://discord.gg/UQvbnMF" target="_blank" class="icon brands fa-discord"><span class="label">Discord</span></a></li>
-			<li><a href="mailto:contact@vrtuos.eu" class="icon fa fa-envelope"><span class="label">E-Mail</span></a></li>
-			<li><a href="https://github.com/Axenntio/VRtuosWebApp" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-		</ul>
-		<p class="copyright">©<a href="https://github.com/Axenntio">Axenntio</a> & <a href="http://vrtuos.eu/#about"> Pavel Marceluch</a>. <a href="eula.html">EULA.</a></p>
-	</footer>
-	<div id="bg"></div>
-</body>
-<script src="scripts/config.js"></script> 
-<script src="scripts/client.js"></script> 
-<script src="scripts/midi.js"></script> 
-<script src="scripts/keyboard.js"></script> 
-<script>
-	config.init();
-	client.init();
-	midi.init()
-</script>
+			<div class="info">
+				<p>Sorry, your current browser not seems to support Web MIDI API, you may want to use <a href="https://www.google.com/chrome/" target="_blank">Chrome</a>. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess" target="_blank">here</a> for a state of MIDI support of your browser.</p>
+			</div>
+
+			<footer class="footer">
+				<div class="icons">
+					<div><a href="https://discord.gg/UQvbnMF" target="_blank" class="fab fa-discord"></a></div>
+					<div><a href="mailto:contact@vrtuos.eu" class="far fa-envelope"></a></div>
+					<div><a href="https://github.com/Axenntio/VRtuosWebApp" target="_blank" class="fab fa-github"></a></div>
+				</div>
+				<div>
+					<p class="copyright">©<a href="https://github.com/Axenntio" target="_blank">Axenntio</a> & <a href="http://vrtuos.eu/#about" target="_blank"> Pavel Marceluch</a>. <a href="eula.html">EULA.</a></p>
+				<div>
+			</footer>
+		</div>
+		<div class="title">
+			<p>VRtuos Companion<span class="superscript">(beta)</span></p>
+		</div>
+
+		<div class="config">
+			<table>
+				<tr>
+					<td><label for="midiInInterface">IP address:</label></td>
+					<td><input id="ipAddress" type="text" minlength="7" maxlength="15"></td>
+				</tr>
+				<tr>
+					<td><button id="connectButton" onclick="client.connect()">Connect</button></td>
+					<td><span id="connectionState" class="not-connected">Not connected</span></td>
+				</tr>
+				<tr>
+					<td><label for="midiInInterface">MIDI in:</label></td>
+					<td><select name="inInterfaces" id="midiInInterface" onchange="config.midiInInterfaceChanged()"></select></td>
+				</tr>
+				<tr>
+					<td><label for="midiOutInterface">MIDI out:</label></td>
+					<td><select name="outInterfaces" id="midiOutInterface" onchange="config.midiOutInterfaceChanged()"></select></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="keys">
+			<div id="key-0" class="key" data-note="A"></div>
+			<div id="key-1" class="key sharp" data-note="A#"></div>
+			<div id="key-2" class="key" data-note="B"></div>
+			<div id="key-3" class="key" data-note="C"></div>
+			<div id="key-4" class="key sharp" data-note="C#"></div>
+			<div id="key-5" class="key" data-note="D"></div>
+			<div id="key-6" class="key sharp" data-note="D#"></div>
+			<div id="key-7" class="key" data-note="E"></div>
+			<div id="key-8" class="key" data-note="F"></div>
+			<div id="key-9" class="key sharp" data-note="F#"></div>
+			<div id="key-10" class="key" data-note="G"></div>
+			<div id="key-11" class="key sharp" data-note="G#"></div>
+			<div id="key-12" class="key" data-note="A"></div>
+			<div id="key-13" class="key sharp" data-note="A#"></div>
+			<div id="key-14" class="key" data-note="B"></div>
+			<div id="key-15" class="key" data-note="C"></div>
+			<div id="key-16" class="key sharp" data-note="C#"></div>
+			<div id="key-17" class="key" data-note="D"></div>
+			<div id="key-18" class="key sharp" data-note="D#"></div>
+			<div id="key-19" class="key" data-note="E"></div>
+			<div id="key-20" class="key" data-note="F"></div>
+			<div id="key-21" class="key sharp" data-note="F#"></div>
+			<div id="key-22" class="key" data-note="G"></div>
+			<div id="key-23" class="key sharp" data-note="G#"></div>
+			<div id="key-24" class="key" data-note="A"></div>
+			<div id="key-25" class="key sharp" data-note="A#"></div>
+			<div id="key-26" class="key" data-note="B"></div>
+			<div id="key-27" class="key" data-note="C"></div>
+			<div id="key-28" class="key sharp" data-note="C#"></div>
+			<div id="key-29" class="key" data-note="D"></div>
+			<div id="key-30" class="key sharp" data-note="D#"></div>
+			<div id="key-31" class="key" data-note="E"></div>
+			<div id="key-32" class="key" data-note="F"></div>
+			<div id="key-33" class="key sharp" data-note="F#"></div>
+			<div id="key-34" class="key" data-note="G"></div>
+			<div id="key-35" class="key sharp" data-note="G#"></div>
+			<div id="key-36" class="key" data-note="A"></div>
+			<div id="key-37" class="key sharp" data-note="A#"></div>
+			<div id="key-38" class="key" data-note="B"></div>
+			<div id="key-39" class="key" data-note="C"></div>
+			<div id="key-40" class="key sharp" data-note="C#"></div>
+			<div id="key-41" class="key" data-note="D"></div>
+			<div id="key-42" class="key sharp" data-note="D#"></div>
+			<div id="key-43" class="key" data-note="E"></div>
+			<div id="key-44" class="key" data-note="F"></div>
+			<div id="key-45" class="key sharp" data-note="F#"></div>
+			<div id="key-46" class="key" data-note="G"></div>
+			<div id="key-47" class="key sharp" data-note="G#"></div>
+			<div id="key-48" class="key" data-note="A"></div>
+			<div id="key-49" class="key sharp" data-note="A#"></div>
+			<div id="key-50" class="key" data-note="B"></div>
+			<div id="key-51" class="key" data-note="C"></div>
+			<div id="key-52" class="key sharp" data-note="C#"></div>
+			<div id="key-53" class="key" data-note="D"></div>
+			<div id="key-54" class="key sharp" data-note="D#"></div>
+			<div id="key-55" class="key" data-note="E"></div>
+			<div id="key-56" class="key" data-note="F"></div>
+			<div id="key-57" class="key sharp" data-note="F#"></div>
+			<div id="key-58" class="key" data-note="G"></div>
+			<div id="key-59" class="key sharp" data-note="G#"></div>
+			<div id="key-60" class="key" data-note="A"></div>
+			<div id="key-61" class="key sharp" data-note="A#"></div>
+			<div id="key-62" class="key" data-note="B"></div>
+			<div id="key-63" class="key" data-note="C"></div>
+			<div id="key-64" class="key sharp" data-note="C#"></div>
+			<div id="key-65" class="key" data-note="D"></div>
+			<div id="key-66" class="key sharp" data-note="D#"></div>
+			<div id="key-67" class="key" data-note="E"></div>
+			<div id="key-68" class="key" data-note="F"></div>
+			<div id="key-69" class="key sharp" data-note="F#"></div>
+			<div id="key-70" class="key" data-note="G"></div>
+			<div id="key-71" class="key sharp" data-note="G#"></div>
+			<div id="key-72" class="key" data-note="A"></div>
+			<div id="key-73" class="key sharp" data-note="A#"></div>
+			<div id="key-74" class="key" data-note="B"></div>
+			<div id="key-75" class="key" data-note="C"></div>
+			<div id="key-76" class="key sharp" data-note="C#"></div>
+			<div id="key-77" class="key" data-note="D"></div>
+			<div id="key-78" class="key sharp" data-note="D#"></div>
+			<div id="key-79" class="key" data-note="E"></div>
+			<div id="key-80" class="key" data-note="F"></div>
+			<div id="key-81" class="key sharp" data-note="F#"></div>
+			<div id="key-82" class="key" data-note="G"></div>
+			<div id="key-83" class="key sharp" data-note="G#"></div>
+			<div id="key-84" class="key" data-note="A"></div>
+			<div id="key-85" class="key sharp" data-note="A#"></div>
+			<div id="key-86" class="key" data-note="B"></div>
+			<div id="key-87" class="key" data-note="C"></div>
+		</div>
+
+		<footer class="footer">
+			<div class="icons">
+				<div><a href="https://discord.gg/UQvbnMF" target="_blank" class="fab fa-discord"></a></div>
+				<div><a href="mailto:contact@vrtuos.eu" class="far fa-envelope"></a></div>
+				<div><a href="https://github.com/Axenntio/VRtuosWebApp" target="_blank" class="fab fa-github"></a></div>
+			</div>
+			<div>
+				<p class="copyright">©<a href="https://github.com/Axenntio" target="_blank">Axenntio</a> & <a href="http://vrtuos.eu/#about" target="_blank"> Pavel Marceluch</a>. <a href="eula.html">EULA.</a></p>
+			<div>
+		</footer>
+	</body>
+	<script src="scripts/config.js"></script>
+	<script src="scripts/client.js"></script>
+	<script src="scripts/midi.js"></script>
+	<script src="scripts/keyboard.js"></script>
+	<script src="https://kit.fontawesome.com/1cc06f62b3.js" crossorigin="anonymous"></script>
+	<script>
+		config.init();
+		client.init();
+		midi.init()
+	</script>
 </html>

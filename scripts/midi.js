@@ -7,6 +7,7 @@ midi = {
 		}
 		else {
 			console.log('WebMIDI is not supported in this browser, let\'s put a pop-up for user')
+			document.getElementById("errorMidiApi").classList.add("active")	
 		}
 		navigator
 			.requestMIDIAccess()

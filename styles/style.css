@@ -1,25 +1,193 @@
-.keys {
-	display: block;
-	width: 99%;
-	height: 23%;
-	position: absolute;
-	margin-left: 1%;
-    bottom: 2%;
+html {
+	height: 100%;
+	background-image: linear-gradient(to bottom left, #800000, #000080);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #ffffff;
 }
 
-.menu {
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+}
+
+/* Error Midi API popup */
+
+.error-midi-api {
+	transition: all 0.5s ease;
+	position: fixed;
+	background-color: #000000f0;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
 	text-align: center;
-	display: block;
-	width: 60%;
-	height: 30%;
+	opacity: 0;
+}
+
+.error-midi-api.active {
+	opacity: 1;
+}
+
+.error-midi-api .info {
+	font-size: 1.5em;
+}
+
+.error-midi-api .info  a {
+	border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+	color: inherit;
+}
+
+.error-midi-api .info  a:hover {
+	border-bottom: none;
+}
+
+/* Title stuff */
+
+.title {
+	font-family: Georgia;
+	font-size: 5vw
+}
+
+.title .superscript {
 	position: relative;
-	margin-left: 20%;
-    margin-top: 2%;
+	top: -2vw;
+	font-size: 3vw
+}
+
+/* Config panel stuff */
+
+.config {
+	width: 100%;
+}
+
+.config table {
+	margin: auto;
+}
+
+.config tr {
+	height: 3em;
+}
+
+.config tr td {
+	text-align: left;
+	padding: 0 1em 0 1em;
+}
+
+.config tr td:first-child {
+	text-align: right;
+} 
+
+.config #connectionState {
+	font-size: 1.25em;
+}
+
+input[type="text"] {
+	outline: 0;
+	font-size: 1em;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0.25em;
+	border: #ffffffa0 1px solid;
+	color: #ffffff;
+	padding: 0.5em;
+}
+
+input[type="text"]:focus {
+	box-shadow: 0 0 6px 1px #ffffffa0;
+}
+
+select {
+	width: 100%;
+	outline: 0;
+	font-size: 1em;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0.25em;
+	border: #ffffffb0 1px solid;
+	color: #ffffff;
+	padding: 0.5em;
+}
+
+button {
+	width: 100%;
+	outline: 0;
+	font-size: 1em;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0.25em;
+	border: #ffffffa0 1px solid;
+	color: #ffffff;
+	padding: 0.5em;
+}
+
+button:hover {
+	background-color: rgba(255, 255, 255, 0.125);
+}
+
+button:focus {
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Footer stuff */
+
+.footer .copyright {
+	letter-spacing: 0.2em;
+	font-size: 0.6em;
+	opacity: 0.75;
+	margin-bottom: 0;
+	text-transform: uppercase;
+}
+
+.footer .icons {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+
+.footer .icons a {
+	border-radius: 0.5em;
+	font-size: 1.5em;
+	padding: 0.5em;
+	margin: 0.5em;
+	border: #ffffff 1px solid;
+	text-decoration: none;
+	color: inherit;
+}
+
+.footer .icons a:hover {
+	background-color: rgba(255, 255, 255, 0.125);
+}
+
+.footer .copyright {
+	font-size: 0.8em;
+}
+
+.footer .copyright a {
+	border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+	color: inherit;
+}
+
+.footer .copyright a:hover {
+	border-bottom: none;
+}
+
+
+/* Keyboard stuff */
+.keys {
+	display: block;
+	width: 90%;
+	height: 8vw;
+	max-width: 100%;
+	position: relative;
+	margin: 1vw auto 0;
 }
 
 .key {
 	position: relative;
-	border: 1px solid white;
+	border: 1px solid #ffffffa0;
 	border-radius: 0 0 0.5rem 0.5rem;
 	transition: all .07s ease;
 	display: block;
@@ -31,28 +199,25 @@
 	float: left;
 	width: 1.9%;
 	height: 100%;
-	background: black;
-	opacity: 0.5;
+	background: #000000;
 }
 
 .key.sharp {
 	position: absolute;
 	width: 1.2%;
 	height: 65%;
-	background: white;
-	color: black;
+	background: #ffffff;
+	color: white;
 	top: 0;
 	z-index: 3;
 }
 
 .key.midi-in.sharp {
 	background: rgb(0, 0, 255);
-	height: 68%;
 }
 
 .key.midi-in:not(.sharp) {
 	background: rgb(0, 0, 192);
-	height: 105%;
 }
 
 .key.midi-out.sharp {
@@ -72,15 +237,15 @@
 }
 
 .not-connected {
-	color: #f00000;
+	color: #ac2e2e;
 }
 
 .connected {
-	color: #00b444;
+	color: #2b9453;
 }
 
 .connecting {
-	color: #f59506;
+	color: #d49940;
 }
 
 .key[id="key-1"] { left: 1.3%; }
