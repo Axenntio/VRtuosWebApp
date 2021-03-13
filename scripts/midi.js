@@ -2,11 +2,8 @@ midi = {
 	init() {
 		this.selectedMidiOuputInterface = null;
 		this.midiInterface = null;
-		if (navigator.requestMIDIAccess) {
-			console.log('This browser supports WebMIDI!')
-		}
-		else {
-			console.log('WebMIDI is not supported in this browser, let\'s put a pop-up for user')
+		if (undefined == navigator.requestMIDIAccess) {
+			document.getElementById("errorMidiApi").classList.add("active")	
 		}
 		navigator
 			.requestMIDIAccess()
@@ -14,7 +11,7 @@ midi = {
 	},
 
 	onMidiFailure() {
-		console.log('Could not access your MIDI devices.')
+		alert('Could not access your MIDI devices. Please try to refresh the page, if the problem still occurs, please contact support.')
 	},
 
 	onMidiSuccess(midiAccess) {
