@@ -51,19 +51,23 @@ config = {
 
 	createMidiOptionElement(id, name, state) {
 		var optionElement = document.createElement("option")
-		optionElement.text = name + ' (' + state + ')'
+		optionElement.text = name
 		optionElement.value = id
 		return optionElement
 	},
 
 	midiInInterfaceChanged() {
 		midi.setMidiInHandler(this.midiInInterfaceSelector.value)
-		localStorage.setItem('midiIn', this.midiInInterfaceSelector.value)
+		if ("none" != this.midiInInterfaceSelector.value) {
+			localStorage.setItem('midiIn', this.midiInInterfaceSelector.value)
+		}
 	},
 	
 	midiOutInterfaceChanged() {
-		midi.setMidiOutHandler(this.midiOutInterfaceSelector.value)		
-		localStorage.setItem('midiOut', this.midiOutInterfaceSelector.value)
+		midi.setMidiOutHandler(this.midiOutInterfaceSelector.value)
+		if ("none" != this.midiInInterfaceSelector.value) {
+			localStorage.setItem('midiOut', this.midiOutInterfaceSelector.value)
+		}
 	},
 
 	ipAddressHandler(item) {

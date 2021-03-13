@@ -3,7 +3,10 @@ midi = {
 		this.selectedMidiOuputInterface = null;
 		this.midiInterface = null;
 		if (undefined == navigator.requestMIDIAccess) {
-			document.getElementById("errorMidiApi").classList.add("active")	
+			setTimeout(() => {
+				document.getElementById("errorMidiApi").classList.add("active")	
+			}, 200);
+			
 		}
 		navigator
 			.requestMIDIAccess()
