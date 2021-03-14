@@ -32,7 +32,7 @@ midi = {
 	},
 
 	setMidiOutHandler(id) {
-		this.selectedMidiOuput = null;
+		this.selectedMidiOuputInterface = null;
 		this.midiInterface.outputs.forEach((output) => {
 			if (output.id == id) {
 				this.selectedMidiOuputInterface = output
