@@ -46,7 +46,7 @@ client = {
 	},
 
 	setIp(ipAddress) {
-		this.url = "wss://" + ipAddress.replace(".", "_") + ".local.mvojacek.eu:42069"
+		this.url = "wss://" + ipAddress.replaceAll(".", "_") + ".local.mvojacek.eu:42069"
 	},
 
 	midiMessageHandler(message) {
