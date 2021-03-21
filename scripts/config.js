@@ -9,6 +9,17 @@ config = {
 		this.previousIpAddress = localStorage.getItem('ipAddress')
 		this.previousKeyboardLoopback = localStorage.getItem('keyboardLoopback')
 		this.ipAddressTextBox.addEventListener('input', this.ipAddressHandler)
+
+		fetch('http://localhost:8080/ip/')
+			.then(response => response.json())
+			.then(data => {
+				if (data.length > 0) {
+					let ip = data[0].localIp
+					this.ipAddressTextBox.value = ip
+					client.setIp(ip)
+					client.connect()
+				}
+			})
 	},
 
 	getPreviousMidiIn() {
@@ -30,7 +41,7 @@ config = {
 	updateForm() {
 		midi.getInputs().forEach((input) => {
 			this.midiInInterfaceSelector.add(
-				this.createMidiOptionElement(input.id, input.name, input.state)
+				this.createOptionElement(input.id, input.name)
 			)
 			if (input.id == this.previousMidiIn) {
 				this.midiInInterfaceSelector.value = this.previousMidiIn
@@ -39,7 +50,7 @@ config = {
 
 		midi.getOutputs().forEach((output) => {
 			this.midiOutInterfaceSelector.add(
-				this.createMidiOptionElement(output.id, output.name, output.state)
+				this.createOptionElement(output.id, output.name)
 			)
 			if (output.id == this.previousMidiOut) {
 				this.midiOutInterfaceSelector.value = this.previousMidiOut
@@ -62,10 +73,10 @@ config = {
 		this.keyboardLoopbackStateChanged();
 	},
 
-	createMidiOptionElement(id, name, state) {
-		var optionElement = document.createElement('option')
-		optionElement.text = name
-		optionElement.value = id
+	createOptionElement(value, text) {
+		var optionElement = document.createElement("option")
+		optionElement.text = text
+		optionElement.value = value
 		return optionElement
 	},
 
