@@ -1,7 +1,7 @@
 const serverStates = {
-	NOT_CONNECTED: ["not-connected", "Not connected"],
-	CONNECTED: ["connected", "Connected!"],
-	CONNECTING: ["connecting", "Connecting..."]
+	NOT_CONNECTED: ['not-connected', 'Not connected'],
+	CONNECTED: ['connected', 'Connected!'],
+	CONNECTING: ['connecting', 'Connecting...']
 }
 
 client = {
@@ -9,15 +9,15 @@ client = {
 		this.url = null
 		this.websocket = null
 		this.state = serverStates.NOT_CONNECTED
-		this.connectionStateText = document.getElementById("connectionState")
-		//this.connectButton = document.getElementById("connectButton")
+		this.connectionStateText = document.getElementById('connectionState')
+		//this.connectButton = document.getElementById('connectButton')
 		//this.connectButton.onclick = client.connect
 	},
 
 	connect() {
 		this.setConnectionState(serverStates.CONNECTING)
 		this.websocket = new WebSocket(this.url)
-		this.websocket.binaryType = "arraybuffer"
+		this.websocket.binaryType = 'arraybuffer'
 		this.websocket.onopen = function (e) {
 			client.setConnectionState(serverStates.CONNECTED)
 		}
@@ -31,7 +31,7 @@ client = {
 		}
 	
 		this.websocket.onerror = function (e) {
-			console.error("Error: ", e.data)
+			console.error('Error: ', e.data)
 		}
 	},
 
@@ -46,7 +46,7 @@ client = {
 	},
 
 	setIp(ipAddress) {
-		this.url = "wss://" + ipAddress.replaceAll(".", "-") + ".local.mvojacek.eu:42069"
+		this.url = 'wss://' + ipAddress.replaceAll('.', '-') + '.local.mvojacek.eu:42069'
 	},
 
 	midiMessageHandler(message) {
