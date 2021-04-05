@@ -4,7 +4,7 @@ midi = {
 		this.midiInterface = null;
 		if (undefined == navigator.requestMIDIAccess) {
 			setTimeout(() => {
-				document.getElementById("errorMidiApi").classList.add("active")	
+				document.getElementById('errorMidiApi').classList.add('active')	
 			}, 200);
 			
 		}
@@ -42,6 +42,9 @@ midi = {
 
 	midiInMessageHandler(message) {
 		client.sendMidiMessage(message)
+		if (config.isLoopBacked() && midi.selectedMidiOuputInterface !== null) {
+			midi.selectedMidiOuputInterface.send(message.data)
+		}
 		keyboard.midiInMessageHandler(message)
 	},
 
