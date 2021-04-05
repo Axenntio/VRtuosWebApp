@@ -1,6 +1,6 @@
 const messageType = {
-	MIDI_IN: "midi-in",
-	MIDI_OUT: "midi-out"
+	MIDI_IN: 'midi-in',
+	MIDI_OUT: 'midi-out'
 }
 
 keyboard = {
@@ -19,7 +19,7 @@ keyboard = {
 		let velocity = (midiMessage.data.length > 2) ? midiMessage.data[2] : 0
 
 		if (note >= 21  && note <= 112) {
-			var keyboardNote = document.getElementById("key-" + (note - 21))
+			var keyboardNote = document.getElementById('key-' + (note - 21))
 		}
 	
 		switch (command) {

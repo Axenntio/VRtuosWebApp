@@ -36,7 +36,7 @@
 		<div class="config">
 			<table>
 				<tr>
-					<td><label for="midiInInterface">IP address:</label></td>
+					<td><label for="ipAddress">IP address:</label></td>
 					<td><input id="ipAddress" type="text" minlength="7" maxlength="15"></td>
 				</tr>
 				<tr>
@@ -58,6 +58,10 @@
 							<option value="none">None</option>
 						</select>
 					</td>
+				</tr>
+				<tr>
+					<td><input id="keyboardLoopback" type="checkbox" onchange="config.keyboardLoopbackStateChanged()"></td>
+					<td><label for="keyboardLoopback">My keyboard doesn't produce sound</label></td>
 				</tr>
 			</table>
 		</div>
