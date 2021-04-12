@@ -51,13 +51,37 @@ body {
 
 .title {
 	font-family: Georgia;
-	font-size: 5vw
+	font-size: 5vw;
 }
 
 .title .superscript {
 	position: relative;
 	top: -2vw;
-	font-size: 3vw
+	font-size: 3vw;
+}
+
+@keyframes minecraftAnimation {
+    0% {
+        transform: scale(1, 1) rotate(15deg);
+		z-index: -10;
+    }
+    50% {
+        transform: scale(1.2, 1.2) rotate(15deg);
+		z-index: 10;
+    }
+    100% {
+        transform: scale(1, 1) rotate(15deg);
+		z-index: -10;
+    }
+}
+
+.title #motd {
+	display: inline-block;
+	animation: minecraftAnimation 1s infinite;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 1vw;
 }
 
 /* Config panel stuff */

@@ -30,6 +30,7 @@
 			</footer>
 		</div>
 		<div class="title">
+			<div id="motd">New update available on Oculus AppLab<br>Download it as soon as you can</div>
 			<p>VRtuos Companion<span class="superscript">(beta)</span></p>
 		</div>
 
@@ -168,12 +169,14 @@
 			<div>
 		</footer>
 	</body>
+	<script src="scripts/utils.js"></script>
 	<script src="scripts/config.js"></script>
 	<script src="scripts/client.js"></script>
 	<script src="scripts/midi.js"></script>
 	<script src="scripts/keyboard.js"></script>
 	<script src="https://kit.fontawesome.com/1cc06f62b3.js" crossorigin="anonymous"></script>
 	<script>
+		utils.init();
 		config.init();
 		client.init();
 		midi.init()
