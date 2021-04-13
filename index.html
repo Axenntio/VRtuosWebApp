@@ -39,7 +39,7 @@
 					<td><label for="ipAddress">IP address:</label></td>
 					<td><input id="ipAddress" type="text" minlength="7" maxlength="15"></td>
 					<td class="tooltip">
-						<span class="tooltiptext">The address IP of your Oculus Quest (can be found in <b>Settings</b>)</span>
+						<span class="tooltiptext">The IP address of your Quest (can be found in <b>Settings</b>)</span>
 						<i class="fas fa-question"></i>
 					</td>
 				</tr>
@@ -56,7 +56,7 @@
 						</select>
 					</td>
 					<td class="tooltip">
-						<span class="tooltiptext">The device where the note will be listen on the Oculus Quest.</span>
+						<span class="tooltiptext">The midi input device.</span>
 						<i class="fas fa-question"></i>
 					</td>
 				</tr>
@@ -68,7 +68,7 @@
 						</select>
 					</td>
 					<td class="tooltip">
-						<span class="tooltiptext">The device where the note will be played.</span>
+						<span class="tooltiptext">The midi output device. All sound will go here.</span>
 						<i class="fas fa-question"></i>
 					</td>
 				</tr>
@@ -76,7 +76,7 @@
 					<td><label for="keyboardLoopback">Midi loopback:</label></td>
 					<td><input id="keyboardLoopback" type="checkbox" onchange="config.keyboardLoopbackStateChanged()"></td>
 					<td class="tooltip">
-						<span class="tooltiptext">Redirect all MIDI event to "MIDI out" device. Useful if you don't have any speaker on your keyboard.</span>
+						<span class="tooltiptext">Redirect all MIDI events to the output device. Useful if you don't have any speakers on your keyboard.</span>
 						<i class="fas fa-question"></i>
 					</td>
 				</tr>
