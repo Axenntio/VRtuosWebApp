@@ -14,6 +14,39 @@ body {
     justify-content: center;
 }
 
+/* Tooltips */
+
+.tooltip {
+	position: relative;
+	border-radius: 12px;
+	background: rgba(0, 0, 0, 0.125);
+	color: white;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 30vw;
+	background-color: black;
+	color: white;
+	text-align: center;
+	border:white 1px solid;
+	border-radius: 6px;
+	padding: 5px;
+	position: absolute;
+	z-index: 1;
+	bottom: 150%;
+	margin-left: -15vw;
+}
+
+.tooltip:hover {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+
 /* Error Midi API popup */
 
 .error-midi-api {
@@ -71,7 +104,7 @@ body {
 }
 
 .config tr {
-	height: 3em;
+	height: 2.5em;
 }
 
 .config tr td {
@@ -90,7 +123,7 @@ body {
 input[type="text"] {
 	outline: 0;
 	font-size: 1em;
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 0.25em;
 	border: #ffffffa0 1px solid;
 	color: #ffffff;
@@ -105,7 +138,7 @@ select {
 	width: 100%;
 	outline: 0;
 	font-size: 1em;
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 0.25em;
 	border: #ffffffb0 1px solid;
 	color: #ffffff;
@@ -116,7 +149,7 @@ button {
 	width: 100%;
 	outline: 0;
 	font-size: 1em;
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 0.25em;
 	border: #ffffffa0 1px solid;
 	color: #ffffff;
@@ -124,11 +157,11 @@ button {
 }
 
 button:hover {
-	background-color: rgba(255, 255, 255, 0.125);
+	background-color: rgba(0, 0, 0, 0.125);
 }
 
 button:focus {
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 /* Footer stuff */
