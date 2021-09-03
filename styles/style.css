@@ -145,6 +145,10 @@ select {
 	padding: 0.5em;
 }
 
+option {
+	background-color: #000000;
+}
+
 button {
 	width: 100%;
 	outline: 0;
