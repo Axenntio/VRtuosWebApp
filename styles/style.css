@@ -1,10 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
 html {
 	height: 100%;
-	background-image: linear-gradient(to bottom left, #800000, #000080);
+	/*background-image: linear-gradient(to bottom left, red, blue);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;*/
+	color: #ffffff;
+
+	font-family: "Atkinson Hyperlegible";
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.65;
+}
+
+#bg {
+	-moz-transform: scale(1.0);
+	-webkit-transform: scale(1.0);
+	-ms-transform: scale(1.0);
+	transform: scale(1.0);
+	-webkit-backface-visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -2;
+}
+
+#bg:before, #bg:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#bg:before {
+	background-image: linear-gradient(to bottom left, #400086, #0b0087);
+}
+
+#bg:after {
+	background-image: linear-gradient(to bottom left, #400086, #0b0087);
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	color: #ffffff;
+	z-index: -2;
 }
 
 body {
@@ -12,6 +55,18 @@ body {
 	flex-direction: column;
 	align-items: center;
     justify-content: center;
+
+	font-family: "Atkinson Hyperlegible";
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.65;
+}
+
+input, select, button {
+	font-family: "Atkinson Hyperlegible";
+	font-weight: 400;
+	font-size: 1rem;
+	/*line-height: 1.65;*/
 }
 
 /* Tooltips */
@@ -154,7 +209,7 @@ button {
 	outline: 0;
 	font-size: 1em;
 	background-color: rgba(0, 0, 0, 0.5);
-	border-radius: 0.25em;
+	border-radius: 0.75rem;
 	border: #ffffffa0 1px solid;
 	color: #ffffff;
 	padding: 0.5em;
@@ -170,12 +225,11 @@ button:focus {
 
 /* Footer stuff */
 
-.footer .copyright {
-	letter-spacing: 0.2em;
-	font-size: 0.6em;
-	opacity: 0.75;
+#footer .copyright {
+	letter-spacing: 0.2rem;
+	font-size: 1rem;
+	opacity: 0;
 	margin-bottom: 0;
-	text-transform: uppercase;
 }
 
 .footer .icons {
@@ -196,10 +250,6 @@ button:focus {
 
 .footer .icons a:hover {
 	background-color: rgba(255, 255, 255, 0.125);
-}
-
-.footer .copyright {
-	font-size: 0.8em;
 }
 
 .footer .copyright a {
@@ -276,14 +326,17 @@ button:focus {
 
 .not-connected {
 	color: #ac2e2e;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
 
 .connected {
 	color: #2b9453;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
 
 .connecting {
 	color: #d49940;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
 
 .key[id="key-1"] { left: 1.3%; }
